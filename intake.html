@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply for Coaching — Zed Athletics</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #046E9B;
+    --teal-light: #3DA8D4;
+    --teal-dark: #035A7E;
+    --teal-glow: rgba(4,110,155,0.15);
+    --bg: #111111;
+    --bg-card: #1a1a1a;
+    --bg-input: #222222;
+    --bg-section: #161616;
+    --border: rgba(255,255,255,0.08);
+    --border-focus: rgba(4,110,155,0.6);
+    --text: #f0f0f0;
+    --text-muted: #888;
+    --text-label: #bbb;
+    --red: #e24b4a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Background texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(4,110,155,0.12) 0%, transparent 60%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .logo-mark {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+  }
+
+  .brand-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 42px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .brand-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--teal);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: var(--teal);
+    margin: 20px auto;
+  }
+
+  .intro-box {
+    background: rgba(4,110,155,0.08);
+    border: 1px solid rgba(4,110,155,0.25);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: left;
+  }
+
+  .intro-box h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 8px;
+  }
+
+  .intro-box p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* Section blocks */
+  .section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--teal), transparent);
+  }
+
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-title span.num {
+    background: var(--teal);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* Form fields */
+  .field {
+    margin-bottom: 18px;
+  }
+
+  .field:last-child { margin-bottom: 0; }
+
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  @media (max-width: 520px) {
+    .field-grid { grid-template-columns: 1fr; }
+  }
+
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-label);
+    margin-bottom: 7px;
+  }
+
+  label .req {
+    color: var(--teal);
+    margin-left: 2px;
+  }
+
+  label .hint {
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--text-muted);
+    font-size: 11px;
+    margin-left: 6px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="tel"],
+  select,
+  textarea {
+    width: 100%;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    padding: 11px 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  input[type="text"]::placeholder,
+  input[type="email"]::placeholder,
+  input[type="number"]::placeholder,
+  input[type="tel"]::placeholder,
+  textarea::placeholder {
+    color: #444;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(4,110,155,0.1);
+  }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+
+  select option {
+    background: #222;
+    color: var(--text);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 90px;
+    line-height: 1.6;
+  }
+
+  /* Checkbox / radio groups */
+  .check-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    font-size: 13px;
+    color: var(--text-label);
+    user-select: none;
+  }
+
+  .check-item:hover {
+    border-color: rgba(4,110,155,0.4);
+    background: rgba(4,110,155,0.05);
+  }
+
+  .check-item input[type="checkbox"],
+  .check-item input[type="radio"] {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--teal);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .check-item.selected {
+    border-color: var(--teal);
+    background: rgba(4,110,155,0.1);
+    color: var(--teal-light);
+  }
+
+  /* Scale row */
+  .scale-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .scale-btn {
+    flex: 1;
+    min-width: 36px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 4px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+  }
+
+  .scale-btn:hover { border-color: rgba(4,110,155,0.4); color: var(--text); }
+  .scale-btn.active { background: var(--teal); border-color: var(--teal); color: #fff; }
+
+  .scale-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  /* Submit */
+  .submit-wrap {
+    text-align: center;
+    margin-top: 32px;
+  }
+
+  .submit-btn {
+    background: var(--teal);
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 10px;
+    padding: 16px 56px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .submit-btn:hover { background: var(--teal-dark); }
+  .submit-btn:active { transform: scale(0.98); }
+
+  .submit-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 12px;
+  }
+
+  .submit-note a { color: var(--teal); text-decoration: none; }
+
+  /* Success state */
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 60px 24px;
+    background: var(--bg-card);
+    border: 1px solid rgba(4,110,155,0.3);
+    border-radius: 16px;
+  }
+
+  .success-screen.show { display: block; }
+
+  .success-icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(4,110,155,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 28px;
+  }
+
+  .success-screen h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+
+  .success-screen p {
+    color: var(--text-muted);
+    font-size: 14px;
+    max-width: 380px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* Error */
+  .error-msg {
+    font-size: 12px;
+    color: var(--red);
+    margin-top: 5px;
+    display: none;
+  }
+
+  .field.error input,
+  .field.error select,
+  .field.error textarea {
+    border-color: var(--red);
+  }
+
+  .field.error .error-msg { display: block; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 12px;
+    color: #444;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 32px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(17,17,17,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid rgba(255,255,255,0.07);
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo-img {
+    width: 32px;
+    height: 32px;
+  }
+  .nav-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 0.08em;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  .nav-back {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: #aaa; }
+  .nav-back span { margin-right: 6px; }
+  body { padding-top: 64px; }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">
+    <svg class="nav-logo-img" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="36" height="36" rx="7" fill="#111"/>
+      <polygon points="5,29 12,8 18,21 24,8 31,29 25,29 21,19 18,29 15,19 11,29" fill="#046E9B"/>
+      <polygon points="5,29 12,8 15,16 9,29" fill="#3DA8D4" opacity="0.45"/>
+    </svg>
+    <span class="nav-name">Zed Athletics</span>
+  </a>
+  <a href="index.html" class="nav-back"><span>←</span> Back to Home</a>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-row">
+      <svg class="logo-mark" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="56" height="56" rx="10" fill="#1a1a1a" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <polygon points="10,44 20,12 28,30 36,12 46,44 38,44 34,32 28,44 22,32 18,44" fill="#046E9B"/>
+        <polygon points="10,44 20,12 24,22 16,44" fill="#3DA8D4" opacity="0.5"/>
+      </svg>
+      <div>
+        <div class="brand-name">Zed Athletics</div>
+        <div class="brand-sub">Brandon Zavala</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="intro-box">
+      <h2>Client Intake Form</h2>
+      <p>This form is for anyone looking to start their fitness journey with Zed Athletics. Your answers help build a program that's built specifically around you — your goals, your schedule, your life. Fill it out as honestly as possible and we'll take it from there. Takes about 5 minutes.</p>
+    </div>
+  </div>
+
+  <!-- Form -->
+  <form id="intakeForm" novalidate>
+
+    <!-- Section 1: Personal Info -->
+    <div class="section">
+      <div class="section-title"><span class="num">1</span> Personal Info</div>
+
+      <div class="field-grid">
+        <div class="field" id="f-firstname">
+          <label>First Name <span class="req">*</span></label>
+          <input type="text" name="firstname" placeholder="Your first name" required>
+          <div class="error-msg">Required</div>
+        </div>
+        <div class="field" id="f-lastname">
+          <label>Last Name <span class="req">*</span></label>
+          <input type="text" name="lastname" placeholder="Your last name" required>
+          <div class="error-msg">Required</div>
+        </div>
+      </div>
+
+      <div class="field-grid">
+        <div class="field" id="f-email">
+          <label>Email <span class="req">*</span></label>
+          <input type="email" name="email" placeholder="you@email.com" required>
+          <div class="error-msg">Valid email required</div>
+        </div>
+        <div class="field">
+          <label>Phone <span class="hint">optional</span></label>
+          <input type="tel" name="phone" placeholder="(555) 000-0000">
+        </div>
+      </div>
+
+      <div class="field-grid">
+        <div class="field" id="f-age">
+          <label>Age <span class="req">*</span></label>
+          <input type="number" name="age" placeholder="e.g. 24" min="13" max="80" required>
+          <div class="error-msg">Required</div>
+        </div>
+        <div class="field" id="f-sex">
+          <label>Biological Sex <span class="req">*</span></label>
+          <select name="sex" required>
+            <option value="" disabled selected>Select</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Prefer not to say</option>
+          </select>
+          <div class="error-msg">Required</div>
+        </div>
+      </div>
+
+      <div class="field-grid">
+        <div class="field">
+          <label>Height <span class="hint">ft / in or cm</span></label>
+          <input type="text" name="height" placeholder='e.g. 5&apos;8" or 172cm'>
+        </div>
+        <div class="field">
+          <label>Current Weight <span class="hint">lbs or kg</span></label>
+          <input type="text" name="weight" placeholder="e.g. 165 lbs">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Location / Timezone <span class="hint">optional — for check-in scheduling</span></label>
+        <input type="text" name="location" placeholder="e.g. Seattle, WA — Pacific Time">
+      </div>
+    </div>
+
+    <!-- Section 2: Goals -->
+    <div class="section">
+      <div class="section-title"><span class="num">2</span> Goals</div>
+
+      <div class="field" id="f-primary-goal">
+        <label>Primary Goal <span class="req">*</span></label>
+        <select name="primary_goal" required>
+          <option value="" disabled selected>Select your main goal</option>
+          <option>Fat loss / lose weight</option>
+          <option>Build muscle / bulk</option>
+          <option>Body recomposition (lose fat + build muscle)</option>
+          <option>Improve strength</option>
+          <option>Improve endurance / cardio fitness</option>
+          <option>General health and consistency</option>
+          <option>Athletic performance</option>
+        </select>
+        <div class="error-msg">Required</div>
+      </div>
+
+      <div class="field">
+        <label>Secondary Goals <span class="hint">check all that apply</span></label>
+        <div class="check-group" id="secondary-goals">
+          <label class="check-item"><input type="checkbox" name="secondary_goal[]" value="Glute development"> Glute development</label>
+          <label class="check-item"><input type="checkbox" name="secondary_goal[]" value="Back definition"> Back definition</label>
+          <label class="check-item"><input type="checkbox" name="secondary_goal[]" value="Arm definition"> Arm definition</label>
+          <label class="check-item"><input type="checkbox" name="secondary_goal[]" value="Shoulder width"> Shoulder width</label>
+          <label class="check-item"><input type="checkbox" name="secondary_goal[]" value="Core strength"> Core strength</label>
+          <label class="check-item"><input type="checkbox" name="secondary_goal[]" value="Improve posture"> Improve posture</label>
+          <label class="check-item"><input type="checkbox" name="secondary_goal[]" value="Sustainable habits"> Sustainable habits</label>
+          <label class="check-item"><input type="checkbox" name="secondary_goal[]" value="Increase energy"> Increase energy</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Target Weight or Physique Goal <span class="hint">optional but helpful</span></label>
+        <input type="text" name="target_weight" placeholder="e.g. 150 lbs, or describe a look/feel you're going for">
+      </div>
+
+      <div class="field">
+        <label>Timeline <span class="hint">any target date or general timeframe?</span></label>
+        <input type="text" name="timeline" placeholder="e.g. 3 months, summer 2025, no specific date">
+      </div>
+    </div>
+
+    <!-- Section 3: Training Background -->
+    <div class="section">
+      <div class="section-title"><span class="num">3</span> Training Background</div>
+
+      <div class="field" id="f-exp">
+        <label>Experience Level <span class="req">*</span></label>
+        <select name="experience" required>
+          <option value="" disabled selected>Select your level</option>
+          <option>Complete beginner — never worked out consistently</option>
+          <option>Beginner — worked out a few times but no real routine</option>
+          <option>Intermediate — some consistent training, know basic movements</option>
+          <option>Advanced — trained consistently for 2+ years</option>
+        </select>
+        <div class="error-msg">Required</div>
+      </div>
+
+      <div class="field">
+        <label>Training Background <span class="hint">check all that apply</span></label>
+        <div class="check-group">
+          <label class="check-item"><input type="checkbox" name="background[]" value="Weight training"> Weight training</label>
+          <label class="check-item"><input type="checkbox" name="background[]" value="Pilates"> Pilates</label>
+          <label class="check-item"><input type="checkbox" name="background[]" value="Yoga"> Yoga</label>
+          <label class="check-item"><input type="checkbox" name="background[]" value="Running / cardio"> Running / cardio</label>
+          <label class="check-item"><input type="checkbox" name="background[]" value="Team sports"> Team sports</label>
+          <label class="check-item"><input type="checkbox" name="background[]" value="Martial arts"> Martial arts</label>
+          <label class="check-item"><input type="checkbox" name="background[]" value="Dance / movement"> Dance / movement</label>
+          <label class="check-item"><input type="checkbox" name="background[]" value="None"> None</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Injuries or Physical Limitations <span class="hint">anything we should know about?</span></label>
+        <textarea name="injuries" placeholder="e.g. bad left knee, lower back issues, shoulder surgery — or 'none'"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Any movements or exercises you know you dislike or want to avoid?</label>
+        <textarea name="avoid" placeholder="e.g. running, heavy squats, overhead press..."></textarea>
+      </div>
+    </div>
+
+    <!-- Section 4: Schedule & Equipment -->
+    <div class="section">
+      <div class="section-title"><span class="num">4</span> Schedule & Equipment</div>
+
+      <div class="field" id="f-days">
+        <label>How many days per week can you commit to working out? <span class="req">*</span></label>
+        <select name="days_per_week" required>
+          <option value="" disabled selected>Select</option>
+          <option>2 days</option>
+          <option>3 days</option>
+          <option>4 days</option>
+          <option>5 days</option>
+          <option>6 days</option>
+        </select>
+        <div class="error-msg">Required</div>
+      </div>
+
+      <div class="field">
+        <label>Preferred workout days <span class="hint">optional</span></label>
+        <div class="check-group">
+          <label class="check-item"><input type="checkbox" name="pref_days[]" value="Mon"> Mon</label>
+          <label class="check-item"><input type="checkbox" name="pref_days[]" value="Tue"> Tue</label>
+          <label class="check-item"><input type="checkbox" name="pref_days[]" value="Wed"> Wed</label>
+          <label class="check-item"><input type="checkbox" name="pref_days[]" value="Thu"> Thu</label>
+          <label class="check-item"><input type="checkbox" name="pref_days[]" value="Fri"> Fri</label>
+          <label class="check-item"><input type="checkbox" name="pref_days[]" value="Sat"> Sat</label>
+          <label class="check-item"><input type="checkbox" name="pref_days[]" value="Sun"> Sun</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>How long can each session be?</label>
+        <select name="session_length">
+          <option value="" disabled selected>Select</option>
+          <option>30–45 minutes</option>
+          <option>45–60 minutes</option>
+          <option>60–75 minutes</option>
+          <option>75–90 minutes</option>
+          <option>90+ minutes</option>
+        </select>
+      </div>
+
+      <div class="field" id="f-gym">
+        <label>Gym / Equipment Access <span class="req">*</span></label>
+        <select name="gym_access" required>
+          <option value="" disabled selected>Select</option>
+          <option>Full commercial gym (Planet Fitness, LA Fitness, etc.)</option>
+          <option>Home gym — full setup (rack, barbell, cables)</option>
+          <option>Home gym — basic (dumbbells, bench)</option>
+          <option>Apartment gym — limited machines</option>
+          <option>No equipment — bodyweight only</option>
+        </select>
+        <div class="error-msg">Required</div>
+      </div>
+
+      <div class="field">
+        <label>Gym Name <span class="hint">optional</span></label>
+        <input type="text" name="gym_name" placeholder="e.g. Planet Fitness — Seattle, WA">
+      </div>
+
+      <div class="field">
+        <label>Do you have access to cardio equipment?</label>
+        <div class="check-group">
+          <label class="check-item"><input type="checkbox" name="cardio_equip[]" value="Treadmill"> Treadmill</label>
+          <label class="check-item"><input type="checkbox" name="cardio_equip[]" value="Stairmaster"> Stairmaster</label>
+          <label class="check-item"><input type="checkbox" name="cardio_equip[]" value="Stationary bike"> Stationary bike</label>
+          <label class="check-item"><input type="checkbox" name="cardio_equip[]" value="Elliptical"> Elliptical</label>
+          <label class="check-item"><input type="checkbox" name="cardio_equip[]" value="Rowing machine"> Rowing machine</label>
+          <label class="check-item"><input type="checkbox" name="cardio_equip[]" value="Outdoor running"> Outdoor running</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: Nutrition -->
+    <div class="section">
+      <div class="section-title"><span class="num">5</span> Nutrition</div>
+
+      <div class="field">
+        <label>How would you describe your current eating habits?</label>
+        <select name="eating_habits">
+          <option value="" disabled selected>Select</option>
+          <option>Very inconsistent — I skip meals often</option>
+          <option>Somewhat consistent — I eat most days but no real structure</option>
+          <option>Pretty consistent — I meal prep or plan ahead</option>
+          <option>Very structured — I track calories/macros</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Do you have any dietary restrictions or preferences?</label>
+        <div class="check-group">
+          <label class="check-item"><input type="checkbox" name="diet[]" value="None"> None</label>
+          <label class="check-item"><input type="checkbox" name="diet[]" value="Vegetarian"> Vegetarian</label>
+          <label class="check-item"><input type="checkbox" name="diet[]" value="Vegan"> Vegan</label>
+          <label class="check-item"><input type="checkbox" name="diet[]" value="Gluten-free"> Gluten-free</label>
+          <label class="check-item"><input type="checkbox" name="diet[]" value="Dairy-free"> Dairy-free</label>
+          <label class="check-item"><input type="checkbox" name="diet[]" value="Halal"> Halal</label>
+          <label class="check-item"><input type="checkbox" name="diet[]" value="Kosher"> Kosher</label>
+          <label class="check-item"><input type="checkbox" name="diet[]" value="Other"> Other</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Any foods you strongly dislike or can't eat?</label>
+        <input type="text" name="food_dislikes" placeholder="e.g. fish, eggs, broccoli...">
+      </div>
+
+      <div class="field">
+        <label>Do you currently take any supplements?</label>
+        <textarea name="supplements" placeholder="e.g. protein powder, creatine, pre-workout — or 'none'"></textarea>
+      </div>
+
+      <div class="field">
+        <label>How much water do you drink daily?</label>
+        <select name="water">
+          <option value="" disabled selected>Select</option>
+          <option>Less than 4 cups — I barely drink water</option>
+          <option>4–6 cups — below average</option>
+          <option>6–8 cups — decent</option>
+          <option>8+ cups — I stay hydrated</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Section 6: Lifestyle -->
+    <div class="section">
+      <div class="section-title"><span class="num">6</span> Lifestyle & Recovery</div>
+
+      <div class="field">
+        <label>How is your sleep on average?</label>
+        <select name="sleep">
+          <option value="" disabled selected>Select</option>
+          <option>Less than 5 hours — consistently low</option>
+          <option>5–6 hours — below average</option>
+          <option>6–7 hours — okay</option>
+          <option>7–8 hours — good</option>
+          <option>8+ hours — great</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>How stressful is your daily life right now?</label>
+        <div class="scale-row" id="stress-scale">
+          <button type="button" class="scale-btn" data-val="1">1</button>
+          <button type="button" class="scale-btn" data-val="2">2</button>
+          <button type="button" class="scale-btn" data-val="3">3</button>
+          <button type="button" class="scale-btn" data-val="4">4</button>
+          <button type="button" class="scale-btn" data-val="5">5</button>
+          <button type="button" class="scale-btn" data-val="6">6</button>
+          <button type="button" class="scale-btn" data-val="7">7</button>
+          <button type="button" class="scale-btn" data-val="8">8</button>
+          <button type="button" class="scale-btn" data-val="9">9</button>
+          <button type="button" class="scale-btn" data-val="10">10</button>
+        </div>
+        <div class="scale-labels"><span>Very low</span><span>Extremely high</span></div>
+        <input type="hidden" name="stress_level" id="stress-val">
+      </div>
+
+      <div class="field">
+        <label>What does your typical workday look like?</label>
+        <select name="activity_level">
+          <option value="" disabled selected>Select</option>
+          <option>Desk job / mostly sitting</option>
+          <option>Mix of sitting and standing</option>
+          <option>On my feet most of the day</option>
+          <option>Physically demanding job</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Anything going on in your life that might affect your training? <span class="hint">optional</span></label>
+        <textarea name="life_context" placeholder="e.g. busy season at work, recovering from something, in a good place mentally, etc."></textarea>
+      </div>
+    </div>
+
+    <!-- Section 7: Motivation -->
+    <div class="section">
+      <div class="section-title"><span class="num">7</span> Motivation & Mindset</div>
+
+      <div class="field">
+        <label>Why now? What made you decide to start this program?</label>
+        <textarea name="why_now" placeholder="Be as honest as you want — this helps a lot in building the right approach for you."></textarea>
+      </div>
+
+      <div class="field">
+        <label>What has stopped you from reaching your goals in the past?</label>
+        <textarea name="past_obstacles" placeholder="e.g. inconsistency, no structure, life got busy, no accountability..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>How motivated are you right now?</label>
+        <div class="scale-row" id="motivation-scale">
+          <button type="button" class="scale-btn" data-val="1">1</button>
+          <button type="button" class="scale-btn" data-val="2">2</button>
+          <button type="button" class="scale-btn" data-val="3">3</button>
+          <button type="button" class="scale-btn" data-val="4">4</button>
+          <button type="button" class="scale-btn" data-val="5">5</button>
+          <button type="button" class="scale-btn" data-val="6">6</button>
+          <button type="button" class="scale-btn" data-val="7">7</button>
+          <button type="button" class="scale-btn" data-val="8">8</button>
+          <button type="button" class="scale-btn" data-val="9">9</button>
+          <button type="button" class="scale-btn" data-val="10">10</button>
+        </div>
+        <div class="scale-labels"><span>Not at all</span><span>Locked in</span></div>
+        <input type="hidden" name="motivation_level" id="motivation-val">
+      </div>
+
+      <div class="field">
+        <label>Is there anything else you want me to know before building your program?</label>
+        <textarea name="extra_notes" placeholder="Anything at all — no detail is too small."></textarea>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-wrap">
+      <button type="submit" class="submit-btn">Submit My Info →</button>
+      <p class="submit-note">Your info goes directly to <a href="/cdn-cgi/l/email-protection#accfc3cdcfc4ecd6c9c8cdd8c4c0c9d8c5cfdf82cfc3c1"><span class="__cf_email__" data-cfemail="51323e303239112b34353025393d34253832227f323e3c">[email&#160;protected]</span></a>. Expect to hear back within 24–48 hours.</p>
+    </div>
+
+  </form>
+
+  <!-- Success screen -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">✓</div>
+    <h2>You're all set!</h2>
+    <p>Your intake form has been submitted. Brandon will review your info and reach out to <strong id="confirm-email"></strong> within 24–48 hours to get you started.</p>
+  </div>
+
+  <div class="footer">© 2025 Zed Athletics — Brandon Zavala</div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Checkbox visual toggle
+  document.querySelectorAll('.check-item input').forEach(input => {
+    input.addEventListener('change', () => {
+      input.closest('.check-item').classList.toggle('selected', input.checked);
+    });
+  });
+
+  // Scale buttons
+  function initScale(containerId, hiddenId) {
+    const container = document.getElementById(containerId);
+    const hidden = document.getElementById(hiddenId);
+    container.querySelectorAll('.scale-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        container.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        hidden.value = btn.dataset.val;
+      });
+    });
+  }
+  initScale('stress-scale', 'stress-val');
+  initScale('motivation-scale', 'motivation-val');
+
+  // Form submit
+  document.getElementById('intakeForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    let valid = true;
+
+    // Required field validation
+    const required = [
+      { id: 'f-firstname', field: 'firstname', type: 'text' },
+      { id: 'f-lastname', field: 'lastname', type: 'text' },
+      { id: 'f-email', field: 'email', type: 'email' },
+      { id: 'f-age', field: 'age', type: 'text' },
+      { id: 'f-sex', field: 'sex', type: 'select' },
+      { id: 'f-primary-goal', field: 'primary_goal', type: 'select' },
+      { id: 'f-exp', field: 'experience', type: 'select' },
+      { id: 'f-days', field: 'days_per_week', type: 'select' },
+      { id: 'f-gym', field: 'gym_access', type: 'select' },
+    ];
+
+    required.forEach(r => {
+      const wrap = document.getElementById(r.id);
+      const el = this.elements[r.field];
+      let val = el ? el.value.trim() : '';
+      let ok = val !== '' && val !== 'Select';
+      if (r.type === 'email') ok = ok && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      if (wrap) wrap.classList.toggle('error', !ok);
+      if (!ok) valid = false;
+    });
+
+    if (!valid) {
+      document.querySelector('.field.error')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // Show success
+    document.getElementById('intakeForm').style.display = 'none';
+    const successScreen = document
