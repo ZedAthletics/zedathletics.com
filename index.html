@@ -238,7 +238,7 @@
       <a href="intake.html" class="full-intake-link">Ready to commit? Full Intake Form →</a>
     </div>
     <div class="intake reveal">
-      <form id="contactForm" novalidate>
+      <form action="https://formspree.io/f/mgopbevq" method="POST">
         <div class="intake-title">Apply for Coaching</div>
         <div class="intake-sub">Takes 2 minutes. No commitment required.</div>
         <div class="frow">
@@ -312,28 +312,6 @@
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    let valid = true;
-    [
-      { id: 'f-fn', name: 'firstname', type: 'text' },
-      { id: 'f-ln', name: 'lastname', type: 'text' },
-      { id: 'f-em', name: 'email', type: 'email' },
-      { id: 'f-goal', name: 'goal', type: 'select' },
-    ].forEach(c => {
-      const wrap = document.getElementById(c.id);
-      const el = this.elements[c.name];
-      let val = el ? el.value.trim() : '';
-      let ok = val !== '' && val !== 'Select goal';
-      if (c.type === 'email') ok = ok && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
-      if (wrap) wrap.classList.toggle('error', !ok);
-      if (!ok) valid = false;
-    });
-    if (!valid) { document.querySelector('.field.error')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
-    document.getElementById('contactForm').style.display = 'none';
-    document.getElementById('successMsg').classList.add('show');
-    document.getElementById('conf-email').textContent = this.elements['email'].value;
-  });
 </script>
 </body>
 </html>
